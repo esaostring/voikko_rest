@@ -1,0 +1,7 @@
+version: '3'
+services:
+  voikko-rest:
+    build: ./voikko-rest
+    ports:
+      - "8899:8899"
+    container_name: voikko-rest-tmt
