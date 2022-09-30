@@ -1,8 +1,7 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
-from flask import jsonify
+from flask import json, Response
 
-import sys
 from libvoikko import Voikko
 
 app = Flask(__name__)
@@ -13,7 +12,10 @@ v = Voikko('fi')
 class Finnish_text_analysis(Resource):
     def get(self):
         word = request.args.get('word')
-        return(jsonify(self.process(word)))
+        res = self.process(word)
+        json_string = json.dumps(res, ensure_ascii=False)
+        response = Response(json_string, content_type="application/json; charset=utf-8")
+        return response
 
 class Analyze(Finnish_text_analysis):
     def process(self, word):
