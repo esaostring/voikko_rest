@@ -1,9 +1,8 @@
-FROM python:3.7.0-stretch
+FROM python:3.9
 
 RUN DEBIAN_FRONTEND=noninteractive \
 	&& apt-get update \
-	&& apt-get install -y voikko-fi python-libvoikko \
-        && apt-get install -y python-flask python-flask-restful python-flask-sqlalchemy
+	&& apt-get install -y voikko-fi python-libvoikko
 
 WORKDIR /usr/src/app
 
