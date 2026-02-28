@@ -1,19 +1,19 @@
 # Voikko REST API
 
-Simple Flask REST API experiment for [Voikko](https://voikko.puimula.org/).
+Simple FastAPI experiment for [Voikko](https://voikko.puimula.org/).
 
 
 ## Build and start service:
 
 ```
-docker-compose build
-docker-compose up
+docker compose build
+docker compose up
 ```
 
 ## Usage examples
 
 ### Analyze
-```
+```json
 $ curl --get --data-urlencode "word=öljyistä" 'http://localhost:8899/analyze' | jq .
 
 [
@@ -40,7 +40,7 @@ $ curl --get --data-urlencode "word=öljyistä" 'http://localhost:8899/analyze' 
 ```
 
 ### Hyphenate
-```
+```json
 $ curl --get --data-urlencode "word=öljyistä" 'http://localhost:8899/hyphenate' | jq .
 {
   "hyphenated": "öl-jyis-tä",
@@ -50,13 +50,13 @@ $ curl --get --data-urlencode "word=öljyistä" 'http://localhost:8899/hyphenate
 
 ### Check spelling
 
-```
+```json
 $ curl --get --data-urlencode "word=tieverkkko" 'http://localhost:8899/spell' | jq .
 {
   "spelling": false
 }
 ```
-```
+```json
 $ curl --get --data-urlencode "word=tieverkko" 'http://localhost:8899/spell' | jq .
 {
   "spelling": true
@@ -64,7 +64,7 @@ $ curl --get --data-urlencode "word=tieverkko" 'http://localhost:8899/spell' | j
 ```
 
 ### Suggest words
-```
+```json
 $ curl --get --data-urlencode "word=tieverko" 'http://localhost:8899/suggest' | jq .
 [
   "tievero",
